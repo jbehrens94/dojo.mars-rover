@@ -1,6 +1,6 @@
 * [ ] Refactoring goals
     * [x] Replace magic numbers/strings
-    * [ ] Rename `RoverState.xx`
+    * [x] Rename `RoverState.xx`
     * [ ] Rename `RoverState.yy`
     * [ ] Rename `RoverState.dd`
     * [x] Rename `Rover.init(_:)` `p` parameter

@@ -8,5 +8,5 @@
     * [ ] Rename `go(_:)` `cms` parameter
     * [ ] Replace inner `switch` in `go(_:)`
     * [ ] Replace outer `switch` in `go(_:)`
-    * [ ] Replace `pos()` with `CustomStringConvertible`.
+    * [x] Replace `pos()` with `CustomStringConvertible`.
     * [x] Get rid of `g(_:)` method, as it seems to be dead.

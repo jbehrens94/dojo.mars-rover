@@ -28,7 +28,7 @@ final class MarsRoverTests: XCTestCase {
             rover.go(instructions)
 
             XCTAssertEqual(
-                rover.pos(),
+                rover.description,
                 expectedOutput,
                 "Failed for starting position: \(startingPosition), instructions: \(instructions)"
             )

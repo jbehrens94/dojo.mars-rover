@@ -1,11 +1,11 @@
-// swiftlint:disable cyclomatic_complexity identifier_name implicit_return
+// swiftlint:disable cyclomatic_complexity identifier_name
 class RoverState {
     var xx: Int = 0
     var yy: Int = 0
     var dd: Rover.Direction = .north
 }
 
-class Rover {
+class Rover: CustomStringConvertible {
     enum Command: Character {
         case left = "L",
              right = "R",
@@ -60,8 +60,6 @@ class Rover {
         }
     }
 
-    func pos() -> String {
-        return "\(rs.xx) \(rs.yy) \(rs.dd)"
-    }
+    var description: String { "\(rs.xx) \(rs.yy) \(rs.dd.rawValue)" }
 }
-// swiftlint:enable cyclomatic_complexity identifier_name implicit_return
+// swiftlint:enable cyclomatic_complexity identifier_name

@@ -3,26 +3,24 @@ final class Rover: CustomStringConvertible {
 
     init(position: String) {
         let components = position.split(separator: " ")
-        if components.count >= 3 {
-            state.xPosition = Int(components[0]) ?? 0
-            state.yPosition = Int(components[1]) ?? 0
-            state.direction = Direction(rawValue: components[2].first ?? "N") ?? .north
-        }
+
+        guard
+            let xPosition = Int(components[0]),
+            let yPosition = Int(components[1]),
+            let directionString = components[2].first,
+            let direction = Direction(rawValue: directionString)
+        else { return }
+
+        state.xPosition = xPosition
+        state.yPosition = yPosition
+        state.direction = direction
     }
 
     func execute(commands: [Rover.Command]) {
         commands.forEach { command in
-            if case .left = command {
-                turnLeft()
-            }
-
-            if case .right = command {
-                turnRight()
-            }
-
-            if case .move = command {
-                move()
-            }
+            if case .left = command { turnLeft() }
+            if case .right = command { turnRight() }
+            if case .move = command { move() }
         }
     }
 

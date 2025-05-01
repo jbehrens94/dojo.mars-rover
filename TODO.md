@@ -12,4 +12,5 @@
     * [x] Get rid of `g(_:)` method, as it seems to be dead.
     * [x] Get rid of tuple in test cases for an actual model.
     * [x] Rename RoverState variable `rs`.
+    * [x] Make initialization less depending on force unwraps.
     * [ ] Extract state into something less mutable.

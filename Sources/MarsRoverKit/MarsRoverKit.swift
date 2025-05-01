@@ -1,4 +1,4 @@
-// swiftlint:disable cyclomatic_complexity identifier_name
+// swiftlint:disable identifier_name
 class RoverState {
     var xx: Int = 0
     var yy: Int = 0
@@ -35,32 +35,44 @@ class Rover: CustomStringConvertible {
         commands.forEach { command in
             switch command {
             case Command.left:
-                switch rs.dd {
-                case Direction.east: rs.dd = Direction.north
-                case Direction.north: rs.dd = Direction.west
-                case Direction.west: rs.dd = Direction.south
-                case Direction.south: rs.dd = Direction.east
-                }
+                turnLeft()
             case Command.right:
-                switch rs.dd {
-                case Direction.east: rs.dd = Direction.south
-                case Direction.south: rs.dd = Direction.west
-                case Direction.west: rs.dd = Direction.north
-                case Direction.north: rs.dd = Direction.east
-                }
+                turnRight()
             case Command.move:
-                switch rs.dd {
-                case Direction.east: rs.xx += 1
-                case Direction.south: rs.yy -= 1
-                case Direction.west: rs.xx -= 1
-                case Direction.north: rs.yy += 1
-                }
+                move()
             default:
                 break
             }
         }
     }
 
+    private func turnLeft() {
+        switch rs.dd {
+        case Direction.east: rs.dd = Direction.north
+        case Direction.north: rs.dd = Direction.west
+        case Direction.west: rs.dd = Direction.south
+        case Direction.south: rs.dd = Direction.east
+        }
+    }
+
+    private func turnRight() {
+        switch rs.dd {
+        case Direction.east: rs.dd = Direction.south
+        case Direction.south: rs.dd = Direction.west
+        case Direction.west: rs.dd = Direction.north
+        case Direction.north: rs.dd = Direction.east
+        }
+    }
+
+    private func move() {
+        switch rs.dd {
+        case Direction.east: rs.xx += 1
+        case Direction.south: rs.yy -= 1
+        case Direction.west: rs.xx -= 1
+        case Direction.north: rs.yy += 1
+        }
+    }
+
     var description: String { "\(rs.xx) \(rs.yy) \(rs.dd.rawValue)" }
 }
-// swiftlint:enable cyclomatic_complexity identifier_name
+// swiftlint:enable identifier_name

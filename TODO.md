@@ -11,5 +11,5 @@
     * [x] Replace `pos()` with `CustomStringConvertible`.
     * [x] Get rid of `g(_:)` method, as it seems to be dead.
     * [x] Get rid of tuple in test cases for an actual model.
-    * [ ] Rename RoverState variable `rs`.
+    * [x] Rename RoverState variable `rs`.
     * [ ] Extract state into something less mutable.

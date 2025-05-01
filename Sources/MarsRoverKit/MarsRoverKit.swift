@@ -1,4 +1,4 @@
-// swiftlint:disable cyclomatic_complexity identifier_name implicit_return line_length switch_case_alignment
+// swiftlint:disable cyclomatic_complexity identifier_name implicit_return
 class RoverState {
     var xx: Int = 0
     var yy: Int = 0
@@ -6,6 +6,19 @@ class RoverState {
 }
 
 class Rover {
+    enum Command: Character {
+        case left = "L",
+             right = "R",
+             move = "M"
+    }
+
+    enum Direction: Character {
+        case north = "N",
+             east = "E",
+             south = "S",
+             west = "W"
+    }
+
     private var rs = RoverState()
 
     init(_ p: String = "") {
@@ -13,19 +26,37 @@ class Rover {
         if s.count >= 3 {
             rs.xx = Int(s[0]) ?? 0
             rs.yy = Int(s[1]) ?? 0
-            rs.dd = s[2].first ?? "N"
+            rs.dd = s[2].first ?? Direction.north.rawValue
         }
     }
 
     func go(_ cms: String) {
         for c in cms {
             switch c {
-            case "L":
-                switch rs.dd { case "E": rs.dd = "N" case "N": rs.dd = "W" case "W": rs.dd = "S" case "S": rs.dd = "E" default: break }
-            case "R":
-                switch rs.dd { case "E": rs.dd = "S" case "S": rs.dd = "W" case "W": rs.dd = "N" case "N": rs.dd = "E" default: break }
-            case "M":
-                switch rs.dd { case "E": rs.xx += 1 case "S": rs.yy -= 1 case "W": rs.xx -= 1 case "N": rs.yy += 1 default: break }
+            case Command.left.rawValue:
+                switch rs.dd {
+                case Direction.east.rawValue: rs.dd = Direction.north.rawValue
+                case Direction.north.rawValue: rs.dd = Direction.west.rawValue
+                case Direction.west.rawValue: rs.dd = Direction.south.rawValue
+                case Direction.south.rawValue: rs.dd = Direction.east.rawValue
+                default: break
+                }
+            case Command.right.rawValue:
+                switch rs.dd {
+                case Direction.east.rawValue: rs.dd = Direction.south.rawValue
+                case Direction.south.rawValue: rs.dd = Direction.west.rawValue
+                case Direction.west.rawValue: rs.dd = Direction.north.rawValue
+                case Direction.north.rawValue: rs.dd = Direction.east.rawValue
+                default: break
+                }
+            case Command.move.rawValue:
+                switch rs.dd {
+                case Direction.east.rawValue: rs.xx += 1
+                case Direction.south.rawValue: rs.yy -= 1
+                case Direction.west.rawValue: rs.xx -= 1
+                case Direction.north.rawValue: rs.yy += 1
+                default: break
+                }
             default:
                 break
             }
@@ -40,4 +71,4 @@ class Rover {
         return "\(rs.xx) \(rs.yy) \(rs.dd)"
     }
 }
-// swiftlint:enable cyclomatic_complexity identifier_name implicit_return line_length switch_case_alignment
+// swiftlint:enable cyclomatic_complexity identifier_name implicit_return

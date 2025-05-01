@@ -9,7 +9,8 @@ class Rover: CustomStringConvertible {
     enum Command: Character {
         case left = "L",
              right = "R",
-             move = "M"
+             move = "M",
+             none = " "
     }
 
     enum Direction: Character {
@@ -30,24 +31,24 @@ class Rover: CustomStringConvertible {
         }
     }
 
-    func go(_ cms: String) {
-        for c in cms {
-            switch c {
-            case Command.left.rawValue:
+    func execute(commands: [Rover.Command]) {
+        commands.forEach { command in
+            switch command {
+            case Command.left:
                 switch rs.dd {
                 case Direction.east: rs.dd = Direction.north
                 case Direction.north: rs.dd = Direction.west
                 case Direction.west: rs.dd = Direction.south
                 case Direction.south: rs.dd = Direction.east
                 }
-            case Command.right.rawValue:
+            case Command.right:
                 switch rs.dd {
                 case Direction.east: rs.dd = Direction.south
                 case Direction.south: rs.dd = Direction.west
                 case Direction.west: rs.dd = Direction.north
                 case Direction.north: rs.dd = Direction.east
                 }
-            case Command.move.rawValue:
+            case Command.move:
                 switch rs.dd {
                 case Direction.east: rs.xx += 1
                 case Direction.south: rs.yy -= 1

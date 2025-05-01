@@ -36,7 +36,7 @@ final class MarsRoverTests: XCTestCase {
         )
     ]
 
-    func testRoverMovements() {
+    func test_rover_whenMovementsAreGiven_thenPositionIsUpdated() {
         for testCase in testCases {
             let rover = Rover(position: testCase.actual)
             rover.execute(commands: testCase.commands)
@@ -47,5 +47,11 @@ final class MarsRoverTests: XCTestCase {
                 "Failed for starting position: \(testCase.actual), instructions: \(testCase.commands)"
             )
         }
+    }
+
+    func test_whenRoverIsInitializedWithIncorrectValues_stateIsDefault() {
+        let rover = Rover(position: "-1 -1 R")
+
+        XCTAssertEqual(rover.state, Rover.State())
     }
 }

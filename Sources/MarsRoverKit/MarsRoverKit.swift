@@ -1,5 +1,5 @@
 final class Rover: CustomStringConvertible {
-    private var state = Rover.State()
+    private(set) var state = Rover.State()
 
     init(position: String) {
         let components = position.split(separator: " ")
@@ -62,16 +62,22 @@ extension Rover {
              none = " "
     }
 
-    enum Direction: Character {
+    enum Direction: Character, Equatable {
         case north = "N",
              east = "E",
              south = "S",
              west = "W"
     }
 
-    final class State {
+    final class State: Equatable {
         var xPosition: Int = 0
         var yPosition: Int = 0
         var direction: Rover.Direction = .north
+
+        static func == (lhs: Rover.State, rhs: Rover.State) -> Bool {
+            lhs.xPosition == rhs.xPosition &&
+                    lhs.yPosition == rhs.yPosition &&
+                    lhs.direction == rhs.direction
+        }
     }
 }

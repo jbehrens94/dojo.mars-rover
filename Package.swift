@@ -12,17 +12,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "MarsRoverKit",
-            plugins: [
-                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
-            ]
-        ),
-
-        .executableTarget(
             name: "MarsRover",
-            dependencies: [
-                "MarsRoverKit"
-            ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
             ]
@@ -31,11 +21,11 @@ let package = Package(
         .testTarget(
             name: "MarsRoverTests",
             dependencies: [
-                "MarsRoverKit"
+                "MarsRover"
             ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
             ]
-        ),
+        )
     ]
 )

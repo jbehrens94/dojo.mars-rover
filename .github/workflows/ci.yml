@@ -26,7 +26,7 @@ jobs:
       - name: Install sonar-scanner
         run: brew install sonar-scanner
       - name: Test
-        run: xcodebuild test -scheme MarsRover -enableCodeCoverage YES -resultBundlePath ./build.xcresult -destination "platform=macOS,arch=arm64e,variant=macos" -skipPackagePluginValidation
+        run: xcodebuild test -scheme MarsRover-Package -enableCodeCoverage YES -resultBundlePath ./build.xcresult -destination "platform=macOS,arch=arm64e,variant=macos" -skipPackagePluginValidation
       - name: Convert to Sonarcube generic
         run: ./scripts/xccov-to-sonarqube-generic.sh ./build.xcresult > coverage.xml
       - name: Push to SonarQube

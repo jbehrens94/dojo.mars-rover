@@ -1,7 +1,7 @@
 import XCTest
 
 @testable
-import MarsRoverKit
+import MarsRover
 
 final class MarsRoverTests: XCTestCase {
     struct TestCase {
@@ -41,11 +41,7 @@ final class MarsRoverTests: XCTestCase {
             let rover = Rover(position: testCase.actual)
             rover.execute(commands: testCase.commands)
 
-            XCTAssertEqual(
-                rover.description,
-                testCase.expected,
-                "Failed for starting position: \(testCase.actual), instructions: \(testCase.commands)"
-            )
+            XCTAssertEqual(rover.description, testCase.expected)
         }
     }
 

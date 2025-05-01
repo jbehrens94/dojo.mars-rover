@@ -18,9 +18,17 @@ final class Rover: CustomStringConvertible {
 
     func execute(commands: [Rover.Command]) {
         commands.forEach { command in
-            if case .left = command { turnLeft() }
-            if case .right = command { turnRight() }
-            if case .move = command { move() }
+            if case .left = command {
+                turnLeft()
+            }
+
+            if case .right = command {
+                turnRight()
+            }
+
+            if case .move = command {
+                move()
+            }
         }
     }
 

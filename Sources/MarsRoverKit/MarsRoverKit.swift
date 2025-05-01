@@ -33,15 +33,16 @@ class Rover: CustomStringConvertible {
 
     func execute(commands: [Rover.Command]) {
         commands.forEach { command in
-            switch command {
-            case Command.left:
+            if case .left = command {
                 turnLeft()
-            case Command.right:
+            }
+
+            if case .right = command {
                 turnRight()
-            case Command.move:
+            }
+
+            if case .move = command {
                 move()
-            default:
-                break
             }
         }
     }

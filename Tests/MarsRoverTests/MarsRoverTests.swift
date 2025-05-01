@@ -24,7 +24,7 @@ final class MarsRoverTests: XCTestCase {
         ]
 
         for (startingPosition, instructions, expectedOutput) in testCases {
-            let rover = Rover(startingPosition)
+            let rover = Rover(position: startingPosition)
             rover.go(instructions)
 
             XCTAssertEqual(

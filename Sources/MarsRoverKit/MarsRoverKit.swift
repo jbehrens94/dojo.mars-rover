@@ -1,7 +1,7 @@
 // swiftlint:disable identifier_name
 class RoverState {
     var xPosition: Int = 0
-    var yy: Int = 0
+    var yPosition: Int = 0
     var dd: Rover.Direction = .north
 }
 
@@ -26,7 +26,7 @@ class Rover: CustomStringConvertible {
         let components = position.split(separator: " ")
         if components.count >= 3 {
             rs.xPosition = Int(components[0]) ?? 0
-            rs.yy = Int(components[1]) ?? 0
+            rs.yPosition = Int(components[1]) ?? 0
             rs.dd = Direction(rawValue: components[2].first ?? "N") ?? .north
         }
     }
@@ -68,12 +68,12 @@ class Rover: CustomStringConvertible {
     private func move() {
         switch rs.dd {
         case Direction.east: rs.xPosition += 1
-        case Direction.south: rs.yy -= 1
+        case Direction.south: rs.yPosition -= 1
         case Direction.west: rs.xPosition -= 1
-        case Direction.north: rs.yy += 1
+        case Direction.north: rs.yPosition += 1
         }
     }
 
-    var description: String { "\(rs.xPosition) \(rs.yy) \(rs.dd.rawValue)" }
+    var description: String { "\(rs.xPosition) \(rs.yPosition) \(rs.dd.rawValue)" }
 }
 // swiftlint:enable identifier_name

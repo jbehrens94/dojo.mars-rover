@@ -2,7 +2,7 @@
     * [x] Replace magic numbers/strings
     * [x] Rename `RoverState.xx`
     * [x] Rename `RoverState.yy`
-    * [ ] Rename `RoverState.dd`
+    * [x] Rename `RoverState.dd`
     * [x] Rename `Rover.init(_:)` `p` parameter
     * [x] Rename `Rover.init(_:)` `s` parameter
     * [x] Rename `go(_:)` `cms` parameter
@@ -11,3 +11,5 @@
     * [x] Replace `pos()` with `CustomStringConvertible`.
     * [x] Get rid of `g(_:)` method, as it seems to be dead.
     * [x] Get rid of tuple in test cases for an actual model.
+    * [ ] Rename RoverState variable `rs`.
+    * [ ] Extract state into something less mutable.

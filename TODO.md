@@ -9,4 +9,4 @@
     * [ ] Replace inner `switch` in `go(_:)`
     * [ ] Replace outer `switch` in `go(_:)`
     * [ ] Replace `pos()` with `CustomStringConvertible`.
-    * [ ] Get rid of `g(_:)` method, as it seems to be dead.
+    * [x] Get rid of `g(_:)` method, as it seems to be dead.

@@ -18,8 +18,8 @@ final class Rover: CustomStringConvertible {
 
     func execute(commands: [Rover.Command]) {
         let actions: [Rover.Command: () -> Void] = [
-            .left: turnLeft,
-            .right: turnRight,
+            .left: { self.turn(clockwise: false) },
+            .right: { self.turn() },
             .move: move
         ]
 
@@ -28,17 +28,15 @@ final class Rover: CustomStringConvertible {
         }
     }
 
-    private func turnLeft() {
+    /// Turn the Rover into a certain direction.
+    ///
+    /// - Parameter clockwise: if `true`, turning right. If `false` turning left.
+    private func turn(clockwise: Bool = true) {
         let directions = Direction.allCases
-        if let index = directions.firstIndex(of: state.direction) {
-            state.direction = directions[(index + 3) % directions.count] // Rotate counter-clockwise
-        }
-    }
+        let distance = clockwise ? 1 : 3
 
-    private func turnRight() {
-        let directions = Direction.allCases
         if let index = directions.firstIndex(of: state.direction) {
-            state.direction = directions[(index + 1) % directions.count] // Rotate clockwise
+            state.direction = directions[(index + distance) % directions.count]
         }
     }
 

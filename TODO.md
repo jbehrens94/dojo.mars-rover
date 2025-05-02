@@ -17,5 +17,5 @@
     * [x] Reformat to use a statement per line for `execute` method.
     * [ ] Simplify switch statement in `move`.
     * [ ] Simplify switch statements in `turnLeft` and `turnRight`.
-    * [ ] Simplify if statements in `execute(commands:)`.
+    * [x] Simplify if statements in `execute(commands:)`.
     * [ ] Consider making `Rover` initialization nillable.

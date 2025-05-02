@@ -17,18 +17,14 @@ final class Rover: CustomStringConvertible {
     }
 
     func execute(commands: [Rover.Command]) {
+        let actions: [Rover.Command: () -> Void] = [
+            .left: turnLeft,
+            .right: turnRight,
+            .move: move
+        ]
+
         commands.forEach { command in
-            if case .left = command {
-                turnLeft()
-            }
-
-            if case .right = command {
-                turnRight()
-            }
-
-            if case .move = command {
-                move()
-            }
+            actions[command]?()
         }
     }
 

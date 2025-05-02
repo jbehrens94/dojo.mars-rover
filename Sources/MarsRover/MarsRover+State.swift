@@ -1,5 +1,5 @@
 extension MarsRover {
-    struct State: Equatable, CustomStringConvertible {
+    struct State: Equatable {
         private var xPosition: Int = 0
         private var yPosition: Int = 0
         private var direction: MarsRover.Direction = .north
@@ -36,7 +36,5 @@ extension MarsRover {
             lhs.yPosition == rhs.yPosition &&
             lhs.direction == rhs.direction
         }
-
-        var description: String { "\(xPosition) \(yPosition) \(direction)" }
     }
 }

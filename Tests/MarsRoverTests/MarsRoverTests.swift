@@ -13,7 +13,7 @@ final class MarsRoverTests: XCTestCase {
     private let testCases: [TestCase] = [
         TestCase(
             actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
-            commands: [.none],
+            commands: [],
             expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north)
         ),
 

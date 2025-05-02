@@ -29,16 +29,16 @@ final class Rover: CustomStringConvertible {
     }
 
     private func turnLeft() {
-        let directions: [Direction] = [.north, .west, .south, .east]
+        let directions = Direction.allCases
         if let index = directions.firstIndex(of: state.direction) {
-            state.direction = directions[(index + 1) % directions.count]
+            state.direction = directions[(index + 3) % directions.count] // Rotate counter-clockwise
         }
     }
 
     private func turnRight() {
-        let directions: [Direction] = [.north, .east, .south, .west]
+        let directions = Direction.allCases
         if let index = directions.firstIndex(of: state.direction) {
-            state.direction = directions[(index + 1) % directions.count]
+            state.direction = directions[(index + 1) % directions.count] // Rotate clockwise
         }
     }
 
@@ -62,7 +62,7 @@ extension Rover {
              none = " "
     }
 
-    enum Direction: Character, Equatable {
+    enum Direction: Character, Equatable, CaseIterable {
         case north = "N",
              east = "E",
              south = "S",

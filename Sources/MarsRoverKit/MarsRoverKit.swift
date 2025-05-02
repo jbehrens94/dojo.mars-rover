@@ -29,20 +29,16 @@ final class Rover: CustomStringConvertible {
     }
 
     private func turnLeft() {
-        switch state.direction {
-        case Direction.east: state.direction = Direction.north
-        case Direction.north: state.direction = Direction.west
-        case Direction.west: state.direction = Direction.south
-        case Direction.south: state.direction = Direction.east
+        let directions: [Direction] = [.north, .west, .south, .east]
+        if let index = directions.firstIndex(of: state.direction) {
+            state.direction = directions[(index + 1) % directions.count]
         }
     }
 
     private func turnRight() {
-        switch state.direction {
-        case Direction.east: state.direction = Direction.south
-        case Direction.south: state.direction = Direction.west
-        case Direction.west: state.direction = Direction.north
-        case Direction.north: state.direction = Direction.east
+        let directions: [Direction] = [.north, .east, .south, .west]
+        if let index = directions.firstIndex(of: state.direction) {
+            state.direction = directions[(index + 1) % directions.count]
         }
     }
 
@@ -80,8 +76,8 @@ extension Rover {
 
         static func == (lhs: Rover.State, rhs: Rover.State) -> Bool {
             lhs.xPosition == rhs.xPosition &&
-                    lhs.yPosition == rhs.yPosition &&
-                    lhs.direction == rhs.direction
+            lhs.yPosition == rhs.yPosition &&
+            lhs.direction == rhs.direction
         }
     }
 }

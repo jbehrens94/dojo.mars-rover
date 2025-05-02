@@ -22,15 +22,13 @@ extension MarsRover {
             }
         }
 
+        /// Move the Rover in the `direction`. The movement is determined by the `delta` defined in `Direction`.
         mutating func move() {
-            switch direction {
-            case Direction.east: xPosition += 1
-            case Direction.south: yPosition -= 1
-            case Direction.west: xPosition -= 1
-            case Direction.north: yPosition += 1
-            }
+            xPosition += direction.delta.x
+            yPosition += direction.delta.y
         }
 
+        /// To be able to compare `State` in testing, it needs to be `Equatable`.
         static func == (lhs: MarsRover.State, rhs: MarsRover.State) -> Bool {
             lhs.xPosition == rhs.xPosition &&
             lhs.yPosition == rhs.yPosition &&

@@ -1,4 +1,4 @@
-* [ ] Refactoring goals
+* [x] Refactoring goals
     * [x] Replace magic numbers/strings
     * [x] Rename `RoverState.xx`
     * [x] Rename `RoverState.yy`
@@ -15,7 +15,7 @@
     * [x] Make initialization less depending on force unwraps.
     * [x] Extract state into something less mutable.
     * [x] Reformat to use a statement per line for `execute` method.
-    * [ ] Simplify switch statement in `move`.
+    * [x] Simplify switch statement in `move`.
     * [x] Simplify switch statements in `turnLeft` and `turnRight`.
     * [x] Simplify if statements in `execute(commands:)`.
     * [x] Consider making `Rover` initialization nillable. (won't pick up)

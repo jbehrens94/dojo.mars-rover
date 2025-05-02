@@ -13,9 +13,9 @@
     * [x] Get rid of tuple in test cases for an actual model.
     * [x] Rename RoverState variable `rs`.
     * [x] Make initialization less depending on force unwraps.
-    * [ ] Extract state into something less mutable.
+    * [x] Extract state into something less mutable.
     * [x] Reformat to use a statement per line for `execute` method.
     * [ ] Simplify switch statement in `move`.
     * [x] Simplify switch statements in `turnLeft` and `turnRight`.
     * [x] Simplify if statements in `execute(commands:)`.
-    * [ ] Consider making `Rover` initialization nillable.
+    * [x] Consider making `Rover` initialization nillable. (won't pick up)

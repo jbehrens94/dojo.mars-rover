@@ -5,49 +5,109 @@ import MarsRover
 
 final class MarsRoverTests: XCTestCase {
     struct TestCase {
-        let actual: String
-        let commands: [Rover.Command]
-        let expected: String
+        let actual: MarsRover.State
+        let commands: [MarsRover.Command]
+        let expected: MarsRover.State
     }
 
     private let testCases: [TestCase] = [
-        TestCase(actual: "1 2 N", commands: [.none], expected: "1 2 N"),
-        TestCase(actual: "1 2 N", commands: [.left], expected: "1 2 W"),
-        TestCase(actual: "1 2 W", commands: [.left], expected: "1 2 S"),
-        TestCase(actual: "1 2 S", commands: [.left], expected: "1 2 E"),
-        TestCase(actual: "1 2 E", commands: [.left], expected: "1 2 N"),
-        TestCase(actual: "1 2 N", commands: [.right], expected: "1 2 E"),
-        TestCase(actual: "1 2 E", commands: [.right], expected: "1 2 S"),
-        TestCase(actual: "1 2 S", commands: [.right], expected: "1 2 W"),
-        TestCase(actual: "1 2 W", commands: [.right], expected: "1 2 N"),
-        TestCase(actual: "1 2 N", commands: [.move], expected: "1 3 N"),
-        TestCase(actual: "1 2 E", commands: [.move], expected: "2 2 E"),
-        TestCase(actual: "1 2 S", commands: [.move], expected: "1 1 S"),
-        TestCase(actual: "1 2 W", commands: [.move], expected: "0 2 W"),
         TestCase(
-            actual: "1 2 N",
-            commands: [.left, .move, .left, .move, .left, .move, .left, .move, .move],
-            expected: "1 3 N"
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
+            commands: [.none],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north)
         ),
+
         TestCase(
-            actual: "3 3 E",
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
+            commands: [.left],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .west)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .west),
+            commands: [.left],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .south)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .south),
+            commands: [.left],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .east)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .east),
+            commands: [.left],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
+            commands: [.right],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .east)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .east),
+            commands: [.right],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .south)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .south),
+            commands: [.right],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .west)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .west),
+            commands: [.right],
+            expected: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
+            commands: [.move],
+            expected: MarsRover.State(xPosition: 1, yPosition: 3, direction: .north)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .east),
+            commands: [.move],
+            expected: MarsRover.State(xPosition: 2, yPosition: 2, direction: .east)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .south),
+            commands: [.move],
+            expected: MarsRover.State(xPosition: 1, yPosition: 1, direction: .south)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .west),
+            commands: [.move],
+            expected: MarsRover.State(xPosition: 0, yPosition: 2, direction: .west)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 1, yPosition: 2, direction: .north),
+            commands: [.left, .move, .left, .move, .left, .move, .left, .move, .move],
+            expected: MarsRover.State(xPosition: 1, yPosition: 3, direction: .north)
+        ),
+
+        TestCase(
+            actual: MarsRover.State(xPosition: 3, yPosition: 3, direction: .east),
             commands: [.move, .move, .right, .move, .move, .right, .move, .right, .right, .move],
-            expected: "5 1 E"
+            expected: MarsRover.State(xPosition: 5, yPosition: 1, direction: .east)
         )
     ]
 
     func test_rover_whenMovementsAreGiven_thenPositionIsUpdated() {
         for testCase in testCases {
-            let rover = Rover(position: testCase.actual)
+            let rover = MarsRover(state: testCase.actual)
             rover.execute(commands: testCase.commands)
 
-            XCTAssertEqual(rover.description, testCase.expected)
+            XCTAssertEqual(rover.state, testCase.expected)
         }
-    }
-
-    func test_whenRoverIsInitializedWithIncorrectValues_stateIsDefault() {
-        let rover = Rover(position: "-1 -1 R")
-
-        XCTAssertEqual(rover.state, Rover.State())
     }
 }

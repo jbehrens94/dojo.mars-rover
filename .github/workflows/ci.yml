@@ -5,7 +5,7 @@ on:
     - cron: 0 0 * * *
 
 jobs:
-  lint:
+  ci:
     runs-on: macos-15
     steps:
       - name: Checkout
@@ -16,20 +16,11 @@ jobs:
         uses: cirruslabs/swiftlint-action@v1
         with:
           version: latest
-  test:
-    runs-on: macos-15
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Install sonar-scanner
-        run: brew install sonar-scanner
       - name: Test
         run: xcodebuild test -scheme MarsRover-Package -enableCodeCoverage YES -resultBundlePath ./build.xcresult -destination "platform=macOS,arch=arm64e,variant=macos" -skipPackagePluginValidation
       - name: Convert to Sonarcube generic
         run: ./scripts/xccov-to-sonarqube-generic.sh ./build.xcresult > coverage.xml
       - name: Push to SonarQube
-        run: sonar-scanner
+        uses: SonarSource/sonarqube-scan-action@v5.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
